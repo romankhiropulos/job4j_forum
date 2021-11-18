@@ -1,10 +1,10 @@
-package ru.job4j.job4j_forum;
+package ru.job4j.forum;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Job4jForumApplicationTests {
+class MainTests {
 
     @Test
     void contextLoads() {
