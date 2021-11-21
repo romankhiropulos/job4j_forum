@@ -16,6 +16,7 @@ public class PostService {
     }
 
     public void save(Post post) {
+        post.setCreated(new Date(System.currentTimeMillis()));
         postRepository.save(post);
     }
 
@@ -26,10 +27,6 @@ public class PostService {
     public List<Post> getAll() {
         return (List<Post>) postRepository.findAll();
     }
-
-//    public Optional<Post> findPostByCommentId(int id) {
-//        return postRepository.findPostByCommentId(id);
-//    }
 
     public Optional<Post> findById(int id) {
         return postRepository.findById(id);

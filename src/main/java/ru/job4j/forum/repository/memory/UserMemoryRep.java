@@ -15,12 +15,18 @@ public class UserMemoryRep {
     }
 
     public User save(User user) {
-        return userMap.get(user.getId());
+        return userMap.put(user.getId(), user);
     }
 
     public Optional<User> findByUsername(String username) {
         return userMap.values().stream().filter(
                 user -> username.equals(user.getUsername())
+        ).findFirst();
+    }
+
+    public Optional<User> findByUsernameAndPassword(String username, String password) {
+        return userMap.values().stream().filter(
+                user -> user.getUsername().equals(username) && user.getPassword().equals(password)
         ).findFirst();
     }
 }

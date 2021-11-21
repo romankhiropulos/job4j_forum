@@ -19,6 +19,7 @@ public class AuthorityMemoryRep {
 
     public Optional<Authority> findByAuthority(String roleUser) {
         return postMap.values().stream()
-                .filter(authority -> roleUser.equals(authority.getAuthority())).findFirst();
+                .filter(authority -> roleUser.equals(authority.getAuthority()))
+                .findFirst();
     }
 }

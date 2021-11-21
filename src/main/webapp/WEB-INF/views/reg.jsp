@@ -63,14 +63,12 @@
                         <h6>Пароль</h6>
                         <input type='password' id='password' name='password' placeholder="Введите ваш пароль"/>
                     </div>
-                    <%--                    <form>--%>
                     <button class="btn btn-primary" type="submit" onclick="return validate()">Ввод</button>
                     <label class="wrongUser" style="color: red">
                         <c:if test="${not empty error}">
                             ${error}
                         </c:if>
                     </label>
-                    <%--                    </form>--%>
                 </form>
             </div>
         </div>

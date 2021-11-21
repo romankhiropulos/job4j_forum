@@ -1,6 +1,5 @@
 package ru.job4j.forum.repository.memory;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.model.User;
@@ -20,7 +19,9 @@ public class PostMemoryRep {
     }
 
     public Post save(Post post) {
-        postMap.put(post.getId(), post);
+        int newId = (int) System.currentTimeMillis();
+        post.setId(newId);
+        postMap.put(newId, post);
         return post;
     }
 

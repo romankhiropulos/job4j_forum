@@ -22,16 +22,28 @@
 </head>
 <body>
 <div class="container">
-    <div style="margin-top: 15px; margin-bottom: 30px">
+    <div style="margin-top: 15px; margin-bottom: 50px">
         <h3>Форум
-            <a class="header" style="font-size: medium">Текущий пользователь: ${user.username}</a>
+            <c:if test="${not empty user.username}">
+                <a class="header" style="font-size: medium">Текущий пользователь: ${user.username}</a>
+            </c:if>
+            <c:if test="${empty user.username}">
+                <a class="header" href="http://localhost:8080/login" style="font-size: medium">Войти</a>
+            </c:if>
         </h3>
-        <a class="header" href="http://localhost:8080/logout" style="margin-top: -15px">Сменить пользователя</a>
+        <c:if test="${not empty user.username}">
+            <a class="header" href="http://localhost:8080/logout" style="font-size: medium">Сменить пользователя</a>
+        </c:if>
+        <c:if test="${empty user.username}">
+            <a class="header" href="http://localhost:8080/reg" style="font-size: medium">Зарегистрироваться</a>
+        </c:if>
     </div>
-    <form  action="<c:url value='/create'/>">
-        <button class="btn btn-outline-secondary">Создать тему</button>
-    </form>
-    <form style="margin-top: 10px">
+    <c:if test="${not empty user.username}">
+        <form action="<c:url value='/create'/>">
+            <button class="btn btn-outline-secondary">Создать тему</button>
+        </form>
+    </c:if>
+    <form style="margin-top: 15px">
         <table class="table table-bordered">
             <thead>
             <tr>

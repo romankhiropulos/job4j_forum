@@ -1,89 +1,81 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!doctype html>
+<html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<%--    <script src="${pageContext.request.contextPath}/resources/accident/script/accident.js"></script>--%>
-<%--    <script src="/static/accident/script/accident.js"></script>--%>
-    <script>
-        function validate() {
-            let valid = true;
-            let name = document.getElementById('name').value;
-            let address = document.getElementById('address').value;
-            let options = document.querySelectorAll('#rules option:checked');
-            let rules = Array.from(options).map(option => option.value) ;
-            if (name === '') {
-                valid = false;
-                alert("Пожалуйста заполните поле \"Название\"");
-            }
-            if (address === '') {
-                valid = false;
-                alert("Пожалуйста заполните поле \"Адрес\"");
-            }
-            if (rules.length === 0) {
-                valid = false;
-                alert("Пожалуйста заполните поле \"Статьи\"");
-            }
-            return valid;
-        }
-    </script>
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
 
-    <title>Accident create</title>
+    <title>Форум</title>
 
+    <script>
+        function validate() {
+            let name = document.getElementById('name').value;
+            let password = document.getElementById('description').value;
+            if (name === '') {
+                alert("Пожалуйста заполните поле \"Название\"");
+                return false;
+            }
+            if (password === '') {
+                alert("Пожалуйста заполните поле \"Описание\"");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    <style>
+        .card {
+            margin-top: 25px;
+        }
+    </style>
 </head>
 <body>
-<form action="<c:url value='/save'/>" method='POST'>
-    <table>
-        <tr>
-            <td>Название:</td>
-            <td><input type='text' name='name' id="name"></td>
-        </tr>
-        <tr>
-            <td>Описание:</td>
-            <td><input type='text' name='text' id="text"></td>
-        </tr>
-        <tr>
-            <td>Адрес:</td>
-            <td><input type='text' name='address' id="address"></td>
-        </tr>
-        <tr>
-            <td>Тип:</td>
-            <td>
-                <select name="type.id">
-                    <c:forEach var="type" items="${types}">
-                        <option value="${type.id}">${type.name}</option>
-                    </c:forEach>
-                </select>
-        </tr>
-        <tr>
-            <td>Статьи:</td>
-            <td>
-                <select name="rIds" id="rules" multiple>
-                    <c:forEach var="rule" items="${rules}">
-                        <option value="${rule.id}">${rule.name}</option>
-                    </c:forEach>
-                </select>
-        </tr>
-        <tr>
-            <td colspan='2'><input name="submit" type="submit" value="Сохранить" onclick="return validate()"/></td>
-        </tr>
-    </table>
-</form>
+<div class="row">
+    <div class="card" style="margin: 0 auto">
+        <div class="card-header">
+            <h4>Новая тема</h4>
+        </div>
+        <div class="card-body">
+            <form class="form" action="<c:url value='/save'/>" method='POST'>
+                <div class="form-group">
+                    <h6>
+                        <label for="name"> Название </label>
+                    </h6>
+                    <input class="input" type='text' id="name" name='name'
+                           placeholder="Введите название">
+                </div>
+                <div class="form-group">
+                    <h6>
+                        <label for="description"> Описание </label>
+                    </h6>
+                    <textarea id="description" name='description' rows="4" cols="50" placeholder="Введите описание"></textarea>
+                </div>
+                <div class="card-form" style="margin-top: 10px">
+                    <button name="submit" type="submit" class="btn btn-primary floated">
+                        Создать
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 </html>
