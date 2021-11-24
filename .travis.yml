@@ -11,6 +11,10 @@ sudo: false
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
+# https://docs.travis-ci.com/user/database-setup/#PostgreSQL
+before_script:
+  - psql -c 'create database forum;' -U postgres
+
 # Отправлять уведомление на почту youremail@smtp.ru(Изменить на свою) если сборка упала
 notifications:
   email:
