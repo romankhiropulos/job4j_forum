@@ -50,11 +50,8 @@ public class PostControl {
 
     @PostMapping("/update")
     public String update(@RequestParam("id") int id, @ModelAttribute Post post) {
-        Optional<Post> postFromMem = postService.findById(id);
-        if (postFromMem.isPresent()) {
-            postFromMem.get().setDescription(post.getDescription());
-            postFromMem.get().setName(post.getName());
-        }
+        post.setId(id);
+        postService.save(post);
         return "redirect:/post?id=" + id;
     }
 

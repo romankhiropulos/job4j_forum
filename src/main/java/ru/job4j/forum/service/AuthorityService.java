@@ -2,21 +2,20 @@ package ru.job4j.forum.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Authority;
-import ru.job4j.forum.repository.memory.AuthorityMemoryRep;
+import ru.job4j.forum.repository.springdata.AuthorityRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class AuthorityService {
 
-    private final AuthorityMemoryRep authMemoryRep;
+    private final AuthorityRepository authorityRepository;
 
-    public AuthorityService(AuthorityMemoryRep authMemoryRep) {
-        this.authMemoryRep = authMemoryRep;
+    public AuthorityService(AuthorityRepository authorityRepository) {
+        this.authorityRepository = authorityRepository;
     }
 
     public Optional<Authority> findByAuthority(String roleUser) {
-        return authMemoryRep.findByAuthority(roleUser);
+        return authorityRepository.findByAuthority(roleUser);
     }
 }

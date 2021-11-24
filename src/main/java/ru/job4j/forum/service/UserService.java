@@ -2,7 +2,7 @@ package ru.job4j.forum.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.User;
-import ru.job4j.forum.repository.memory.UserMemoryRep;
+import ru.job4j.forum.repository.springdata.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,9 +10,9 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private final UserMemoryRep userRepository;
+    private final UserRepository userRepository;
 
-    public UserService(UserMemoryRep userRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
