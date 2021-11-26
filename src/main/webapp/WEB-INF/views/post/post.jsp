@@ -36,7 +36,7 @@
         </h3>
     </form>
     <form>
-        <c:if test="${user == post.user}">
+        <c:if test="${curuser.username == post.user.username}">
             <a class="btn btn-outline-secondary" href="<c:url value='/load?id=${post.id}'/>">Редактировать тему</a>
             <a class="btn btn-outline-danger" href="<c:url value='/delete?id=${post.id}'/>">Удалить тему</a>
         </c:if>

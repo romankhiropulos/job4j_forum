@@ -65,8 +65,8 @@
                     </div>
                     <button class="btn btn-primary" type="submit" onclick="return validate()">Ввод</button>
                     <label class="wrongUser" style="color: red">
-                        <c:if test="${not empty error}">
-                            ${error}
+                        <c:if test="${not empty errorMessage}">
+                            ${errorMessage}
                         </c:if>
                     </label>
                 </form>

@@ -1,5 +1,6 @@
 package ru.job4j.forum.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,10 +34,11 @@ public class PostControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Post post, HttpServletRequest req) {
-        User user = (User) req.getSession().getAttribute("user");
-        if (user != null) {
-            Optional<User> userOptional = userService.findByUsername(user.getUsername());
-            userOptional.ifPresent(post::setUser);
+        Optional<User> user =  userService.findByUsername(
+                SecurityContextHolder.getContext().getAuthentication().getName()
+        );
+        if (user.isPresent()) {
+            post.setUser(user.get());
             postService.save(post);
         }
         return "redirect:/index";
@@ -58,10 +60,6 @@ public class PostControl {
     @GetMapping("/post")
     public String show(@RequestParam("id") int id, Model model, HttpServletRequest req) {
         model.addAttribute("post", postService.findById(id).get());
-        User user = (User) req.getSession().getAttribute("user");
-        if (user != null) {
-            model.addAttribute("user", userService.findByUsername(user.getUsername()).get());
-        }
         return "/post/post";
     }
 

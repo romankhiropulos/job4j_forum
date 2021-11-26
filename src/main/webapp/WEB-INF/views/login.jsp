@@ -66,15 +66,17 @@
                     </div>
                     <button name="submit" type="submit" class="btn btn-primary"
                             style="margin-top: 15px" onclick="return validate()">Вход</button>
-<%--                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
-                    <label id="wrongUser" style="color: red">
-                        <c:if test="${not empty error}">
-                            ${error}
-                        </c:if>
-                    </label>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 </form>
+            </div>
+            <div>
                 <form action="<c:url value='/reg'/>">
                     <button class="btn btn-primary">Регистрация</button>
+                    <label id="wrongUser" style="color: red">
+                        <c:if test="${not empty errorMessage}">
+                            ${errorMessage}
+                        </c:if>
+                    </label>
                 </form>
             </div>
         </div>

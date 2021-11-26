@@ -1,3 +1,4 @@
+<%@ page import="ru.job4j.forum.model.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!doctype html>
@@ -21,24 +22,26 @@
     </style>
 </head>
 <body>
+
 <div class="container">
     <div style="margin-top: 15px; margin-bottom: 50px">
         <h3>Форум
-            <c:if test="${not empty user.username}">
-                <a class="header" style="font-size: medium">Текущий пользователь: ${user.username}</a>
+            <c:out value="${curuser.username}"/>
+            <c:if test="${not empty curuser.username}">
+                <a class="header" style="font-size: medium">Текущий пользователь: ${curuser.username}</a>
             </c:if>
-            <c:if test="${empty user.username}">
+            <c:if test="${empty curuser.username}">
                 <a class="header" href="http://localhost:8080/login" style="font-size: medium">Войти</a>
             </c:if>
         </h3>
-        <c:if test="${not empty user.username}">
+        <c:if test="${not empty curuser.username}">
             <a class="header" href="http://localhost:8080/logout" style="font-size: medium">Сменить пользователя</a>
         </c:if>
-        <c:if test="${empty user.username}">
+        <c:if test="${empty curuser.username}">
             <a class="header" href="http://localhost:8080/reg" style="font-size: medium">Зарегистрироваться</a>
         </c:if>
     </div>
-    <c:if test="${not empty user.username}">
+    <c:if test="${not empty curuser.username}">
         <form action="<c:url value='/create'/>">
             <button class="btn btn-outline-secondary">Создать тему</button>
         </form>
