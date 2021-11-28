@@ -46,7 +46,11 @@ public class PostControl {
 
     @GetMapping("/load")
     public String updateLoad(@RequestParam("id") int id, Model model) {
-        model.addAttribute("post", postService.findById(id).get());
+        Optional<Post> postOptional = postService.findById(id);
+        if (postOptional.isEmpty()) {
+            return "redirect:/index";
+        }
+        model.addAttribute("post", postOptional.get());
         return "/post/edit";
     }
 
@@ -59,7 +63,11 @@ public class PostControl {
 
     @GetMapping("/post")
     public String show(@RequestParam("id") int id, Model model, HttpServletRequest req) {
-        model.addAttribute("post", postService.findById(id).get());
+        Optional<Post> postOptional = postService.findById(id);
+        if (postOptional.isEmpty()) {
+            return "redirect:/index";
+        }
+        model.addAttribute("post", postOptional.get());
         return "/post/post";
     }
 
