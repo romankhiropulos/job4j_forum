@@ -34,7 +34,7 @@ public class PostControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Post post, HttpServletRequest req) {
-        Optional<User> user =  userService.findByUsername(
+        Optional<User> user = userService.findByUsername(
                 SecurityContextHolder.getContext().getAuthentication().getName()
         );
         if (user.isPresent()) {
