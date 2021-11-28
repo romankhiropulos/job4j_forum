@@ -31,8 +31,12 @@ VALUES ('ROLE_USER');
 INSERT INTO authorities (authority)
 VALUES ('ROLE_ADMIN');
 
-INSERT INTO users (username, enabled, password, authority_id)
-VALUES ('root',
+INSERT INTO users (id, username, enabled, password, authority_id)
+VALUES (1000,
+        'root',
         TRUE,
         'password',
         (SELECT id FROM authorities WHERE authority = 'ROLE_ADMIN'));
+
+INSERT INTO post (id, name, description, user_id)
+VALUES (2000, 'post2000', 'pasta', 1000);

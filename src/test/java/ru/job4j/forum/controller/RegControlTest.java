@@ -21,9 +21,9 @@ public class RegControlTest {
 
     @Test
     public void whenAskRegThanShouldReturnRegPage() throws Exception {
-//        this.mockMvc.perform(get("/reg"))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("reg"));
+        this.mockMvc.perform(get("/reg"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("reg"));
     }
 }
