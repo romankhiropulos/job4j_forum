@@ -18,6 +18,7 @@ import ru.job4j.forum.Main;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.model.User;
 import ru.job4j.forum.service.PostService;
+import ru.job4j.forum.service.UserService;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -32,22 +33,23 @@ public class IndexControlTest {
     @MockBean
     private PostService postService;
 
-//    public IndexControlTest(PostService postService) {
-//        this.postService = postService;
-//    }
-//
-//    @BeforeEach
-//    public void setUp() throws SQLException {
-//        Post post1 = Post.of(
-//                1, "name", "description", new Date(System.currentTimeMillis()), new User()
-//        );
-//        postService.save(post1);
-//    }
-//
-//    @AfterEach
-//    public void clear() throws SQLException {
-//        postService.deleteById(1);
-//    }
+    @MockBean
+    private UserService userService;
+
+    @BeforeEach
+    public void setUp() throws SQLException {
+        User user1000 = User.of(1000, "User1000", "password1000");
+        Post post1000 = Post.of(
+                1000, "name", "description", new Date(System.currentTimeMillis()), user1000
+        );
+        postService.save(post1000);
+    }
+
+    @AfterEach
+    public void clear() throws SQLException {
+        postService.deleteById(1000);
+        userService.deleteById(1000);
+    }
 
     @Test
     @WithMockUser
