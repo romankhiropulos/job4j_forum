@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = Main.class)
 @AutoConfigureMockMvc
 @Sql({"/schema-test.sql"})
-public class PostControlTest {
+public class PostControlGetTest {
 
     @Autowired
     private MockMvc mockMvc;
