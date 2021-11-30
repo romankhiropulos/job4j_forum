@@ -13,8 +13,8 @@ import ru.job4j.forum.Main;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.service.PostService;
 
-import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -34,7 +34,7 @@ public class PostControlPostTest {
     @Test
     @WithMockUser
     @Sql({"/schema-test.sql"})
-    public void shouldReturnDefaultMessage() throws Exception {
+    public void whenAskSaveThanRedirectAndSaveNewPost() throws Exception {
         this.mockMvc.perform(post("/save")
                         .param("name", "Куплю ладу-грант. Дорого.")
                         .param("description", "desc"))
@@ -44,5 +44,21 @@ public class PostControlPostTest {
         verify(postMockBeanService).save(argument.capture());
         assertThat(argument.getValue().getName(), is("Куплю ладу-грант. Дорого."));
         assertThat(argument.getValue().getDescription(), is("desc"));
+    }
+
+    @Test
+    @WithMockUser
+    @Sql({"/schema-test.sql"})
+    public void whenAskUpdatePostAndUpdateThanRedirectToUpdatedPost() throws Exception {
+        this.mockMvc.perform(post("/update")
+                        .param("id", "2000")
+                        .param("name", "Куплю Порше. Дешево.")
+                        .param("description", "made in Germany"))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection());
+        ArgumentCaptor<Post> argument = ArgumentCaptor.forClass(Post.class);
+        verify(postMockBeanService).save(argument.capture());
+        assertThat(argument.getValue().getName(), is("Куплю Порше. Дешево."));
+        assertThat(argument.getValue().getDescription(), is("made in Germany"));
     }
 }
