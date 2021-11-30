@@ -26,7 +26,6 @@
 <div class="container">
     <div style="margin-top: 15px; margin-bottom: 50px">
         <h3>Форум
-            <c:out value="${curuser.username}"/>
             <c:if test="${not empty curuser.username}">
                 <a class="header" style="font-size: medium">Текущий пользователь: ${curuser.username}</a>
             </c:if>

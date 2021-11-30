@@ -25,14 +25,3 @@ CREATE TABLE post
     created     TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
     user_id     INT                         NOT NULL REFERENCES users (id)
 );
-
-INSERT INTO authorities (authority)
-VALUES ('ROLE_USER');
-INSERT INTO authorities (authority)
-VALUES ('ROLE_ADMIN');
-
-INSERT INTO users (username, enabled, password, authority_id)
-VALUES ('root',
-        TRUE,
-        'password',
-        (SELECT id FROM authorities WHERE authority = 'ROLE_ADMIN'));
