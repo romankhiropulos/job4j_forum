@@ -13,27 +13,14 @@
 
     <title>Форум</title>
 
-    <script>
-        function validate() {
-            let name = document.getElementById('name').value;
-            let password = document.getElementById('description').value;
-            if (name === '') {
-                alert("Пожалуйста заполните поле \"Название\"");
-                return false;
-            }
-            if (password === '') {
-                alert("Пожалуйста заполните поле \"Описание\"");
-                return false;
-            }
-            return true;
-        }
-    </script>
-
     <style>
         .card {
             margin-top: 25px;
         }
     </style>
+
+    <script src="<c:url value="/static/script/forum.js"/>"></script>
+    <link href="<c:url value="/static/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
 </head>
 <body>
 <div class="row">
@@ -47,19 +34,20 @@
                     <h6>
                         <label for="name"> Название </label>
                     </h6>
-                    <input class="input" type='text' id="name" name='name'
+                    <input class="form-control" type='text' id="name" name='name'
                            placeholder="Введите название" value="${post.name}">
                 </div>
                 <div class="form-group">
                     <h6>
                         <label for="description"> Описание </label>
                     </h6>
-                    <textarea id="description" name='description' rows="4" cols="50" placeholder="Введите описание">
+                    <textarea id="description" name='description' class="form-control" rows="4" cols="50" placeholder="Введите описание">
                         ${post.description}
                     </textarea>
                 </div>
                 <div class="card-form" style="margin-top: 10px">
-                    <button name="submit" type="submit" class="btn btn-primary floated">
+                    <button name="submit" type="submit" class="btn btn-primary floated"
+                            onclick="return validatePostForm()">
                         Сохранить
                     </button>
                 </div>

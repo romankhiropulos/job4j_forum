@@ -18,22 +18,6 @@
 
     <title>Регистрация</title>
 
-    <script>
-        function validate() {
-            let name = document.getElementById('username').value;
-            let password = document.getElementById('password').value;
-            if (name === '') {
-                alert("Пожалуйста заполните поле \"Название\"");
-                return false;
-            }
-            if (password === '') {
-                alert("Пожалуйста заполните поле \"Пароль\"");
-                return false;
-            }
-            return true;
-        }
-    </script>
-
     <style>
         .card {
             margin: 0 auto;
@@ -45,6 +29,9 @@
             width: 300px;
         }
     </style>
+
+    <script src="<c:url value="/static/script/forum.js"/>"></script>
+    <link href="<c:url value="/static/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
 </head>
 <body>
 <div class="container pt-3">
@@ -57,13 +44,15 @@
                 <form class="form" name='login' action="<c:url value='/reg'/>" method='POST'>
                     <div class="form-group">
                         <h6>Имя</h6>
-                        <input type='text' id='username' name='username' placeholder="Введите ваше имя">
+                        <input type='text' id='username' name='username' class="form-control"
+                               placeholder="Введите ваше имя">
                     </div>
                     <div class="form-group">
                         <h6>Пароль</h6>
-                        <input type='password' id='password' name='password' placeholder="Введите ваш пароль"/>
+                        <input type='password' id='password' name='password' class="form-control"
+                               placeholder="Введите ваш пароль"/>
                     </div>
-                    <button class="btn btn-primary" type="submit" onclick="return validate()">Ввод</button>
+                    <button class="btn btn-primary" type="submit" onclick="return validateUserForm()">Ввод</button>
                     <label class="wrongUser" style="color: red">
                         <c:if test="${not empty errorMessage}">
                             ${errorMessage}

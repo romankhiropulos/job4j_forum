@@ -20,12 +20,14 @@
             float: right;
         }
     </style>
+
+    <link href="<c:url value="/static/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
+
 </head>
 <body>
-
 <div class="container">
     <div style="margin-top: 15px; margin-bottom: 50px">
-        <h3>Форум
+        <h3 >Форум
             <c:if test="${not empty curuser.username}">
                 <a class="header" style="font-size: medium">Текущий пользователь: ${curuser.username}</a>
             </c:if>
@@ -47,7 +49,7 @@
     </c:if>
     <form style="margin-top: 15px">
         <table class="table table-bordered">
-            <thead>
+            <thead  class="titleColor">
             <tr>
                 <th scope="col">Тема</th>
                 <th scope="col" style="width: 100px;">Автор</th>

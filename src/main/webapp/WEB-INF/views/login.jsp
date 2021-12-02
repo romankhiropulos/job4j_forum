@@ -18,22 +18,6 @@
 
     <title>Вход</title>
 
-    <script>
-        function validate() {
-            let name = document.getElementById('username').value;
-            let password = document.getElementById('password').value;
-            if (name === '') {
-                alert("Пожалуйста заполните поле \"Название\"");
-                return false;
-            }
-            if (password === '') {
-                alert("Пожалуйста заполните поле \"Пароль\"");
-                return false;
-            }
-            return true;
-        }
-    </script>
-
     <style>
         .card {
             margin: 0 auto;
@@ -45,6 +29,9 @@
             width: 300px;
         }
     </style>
+
+    <script src="<c:url value="/static/script/forum.js"/>"></script>
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/css/style.css" />" media="screen,projection"/>
 </head>
 <body>
 <div class="container pt-3">
@@ -66,7 +53,7 @@
                                placeholder="Введите ваш пароль"/>
                     </div>
                     <button name="submit" type="submit" class="btn btn-primary"
-                            style="margin-top: 15px" onclick="return validate()">Вход
+                            style="margin-top: 15px" onclick="return validateUserForm()">Вход
                     </button>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>

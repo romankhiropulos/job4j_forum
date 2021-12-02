@@ -18,15 +18,15 @@
             display: inline;
             float: right;
         }
-
         .btn-outline-danger {
             margin-left: 15px;
         }
-
         .card {
             margin-top: 25px;
         }
     </style>
+
+    <link href="<c:url value="/static/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
 </head>
 <body>
 <div class="container">
@@ -44,9 +44,8 @@
     <form>
         <div class="card">
             <div class="card-header">
-                <h5 style="float: left"><h5 style="float: left">Тема: <c:out value="${post.name}"/> (Автор: <c:out
-                        value="${post.user.username}"/>)</h5></h5>
-                <h5 style="float: right">Дата изменения: <c:out value="${post.created}"/></h5>
+                <h5 style="float: left"><h5 style="float: left">Тема: <c:out value="${post.name}"/> </h5></h5>
+                <h5 style="float: right; ">Дата изменения: <c:out value="${post.created}"/> <br> Автор: <c:out value="${post.user.username}"/></h5>
             </div>
             <div class="card-body">
                 <h4>Описание:</h4>
