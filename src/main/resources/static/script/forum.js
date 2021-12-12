@@ -1,27 +1,34 @@
-function validateUserForm() {
-    let name = document.getElementById('username').value;
-    let password = document.getElementById('password').value;
+function validateForm(nameAlert, descAlert) {
+    let name = document.getElementById('name').value;
+    let password = document.getElementById('description').value;
     if (name === '') {
-        alert("Пожалуйста заполните поле \"Название\"");
+        alert(nameAlert);
         return false;
     }
     if (password === '') {
-        alert("Пожалуйста заполните поле \"Пароль\"");
+        alert(descAlert);
         return false;
     }
     return true;
 }
 
+function validateUserForm() {
+    validateForm(
+        "Пожалуйста заполните поле \"Название\"",
+        "Пожалуйста заполните поле \"Пароль\""
+    );
+}
+
 function validatePostForm() {
-    let name = document.getElementById('name').value;
-    let password = document.getElementById('description').value;
-    if (name === '') {
-        alert("Пожалуйста заполните поле \"Название\"");
-        return false;
-    }
-    if (password === '') {
-        alert("Пожалуйста заполните поле \"Описание\"");
-        return false;
-    }
-    return true;
+    validateForm(
+        "Пожалуйста заполните поле \"Название\"",
+        "Пожалуйста заполните поле \"Описание\""
+    );
+}
+
+function validateCommentForm() {
+    validateForm(
+        "fake",
+        "Пожалуйста заполните поле \"Текст комментария\""
+    );
 }

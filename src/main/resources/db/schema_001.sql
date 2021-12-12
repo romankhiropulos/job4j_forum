@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS authorities;
@@ -23,5 +24,14 @@ CREATE TABLE post
     name        VARCHAR(2000),
     description TEXT,
     created     TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
+    user_id     INT                         NOT NULL REFERENCES users (id)
+);
+
+CREATE TABLE comment
+(
+    id          SERIAL PRIMARY KEY,
+    description TEXT                        NOT NULL,
+    created     TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
+    post_id     INT                         NOT NULL REFERENCES post (id),
     user_id     INT                         NOT NULL REFERENCES users (id)
 );

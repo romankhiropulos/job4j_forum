@@ -1,7 +1,9 @@
 package ru.job4j.forum.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -23,6 +25,9 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post", fetch = FetchType.LAZY)
+    private final List<Comment> comments = new ArrayList<>();
 
     public static Post of(int id, String name, String description, Date created, User user) {
         Post post = new Post();
@@ -72,6 +77,10 @@ public class Post {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
     }
 
     @Override

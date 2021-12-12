@@ -17,3 +17,6 @@ VALUES (1000,
 
 INSERT INTO post (id, name, description, created, user_id)
 VALUES (2000, 'post2000', 'pasta', now(), 1000);
+
+INSERT INTO comment (id, description, post_id, user_id)
+values (3000, 'Comment for success!', 2000, 999);

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.model.User;
+import ru.job4j.forum.service.CommentService;
 import ru.job4j.forum.service.PostService;
 import ru.job4j.forum.service.UserService;
 
@@ -22,9 +23,12 @@ public class PostControl {
 
     private final UserService userService;
 
-    public PostControl(PostService postService, UserService userService) {
+    private final CommentService commentService;
+
+    public PostControl(PostService postService, UserService userService, CommentService commentService) {
         this.postService = postService;
         this.userService = userService;
+        this.commentService = commentService;
     }
 
     @GetMapping("/create")
@@ -62,12 +66,13 @@ public class PostControl {
     }
 
     @GetMapping("/post")
-    public String show(@RequestParam("id") int id, Model model, HttpServletRequest req) {
+    public String show(@RequestParam("id") int id, Model model) {
         Optional<Post> postOptional = postService.findById(id);
         if (postOptional.isEmpty()) {
             return "redirect:/index";
         }
         model.addAttribute("post", postOptional.get());
+//        model.addAttribute("comments", commentService.findCommentsByPostId(id));
         return "/post/post";
     }
 
