@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS authorities;
@@ -26,6 +27,15 @@ CREATE TABLE post
     user_id     INT                         NOT NULL REFERENCES users (id)
 );
 
+CREATE TABLE comment
+(
+    id          SERIAL PRIMARY KEY,
+    description TEXT                        NOT NULL,
+    created     TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
+    post_id     INT                         NOT NULL REFERENCES post (id),
+    user_id     INT                         NOT NULL REFERENCES users (id)
+);
+
 INSERT INTO authorities (authority)
 VALUES ('ROLE_USER');
 INSERT INTO authorities (authority)
@@ -44,4 +54,7 @@ VALUES (1000,
         (SELECT id FROM authorities WHERE authority = 'ROLE_ADMIN'));
 
 INSERT INTO post (id, name, description, created, user_id)
-VALUES (2000, 'post2000', 'pasta', now(), 1000);
+VALUES (2000, 'post2000', 'pasta', NOW(), 1000);
+
+INSERT INTO comment (id, description, post_id, user_id)
+VALUES (3000, 'Comment for success!', 2000, 999);
