@@ -34,7 +34,7 @@
                     <h6>
                         <label for="description"> Текст комментария </label>
                     </h6>
-                    <textarea id="description" name='description' rows="4" cols="50"
+                    <textarea id="description" name="description" rows="4" cols="50"
                               class="form-control" placeholder="Оставьте комментарий">
                     </textarea>
                 </div>

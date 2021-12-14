@@ -72,7 +72,6 @@ public class PostControl {
             return "redirect:/index";
         }
         model.addAttribute("post", postOptional.get());
-//        model.addAttribute("comments", commentService.findCommentsByPostId(id));
         return "/post/post";
     }
 

@@ -1,34 +1,26 @@
-function validateForm(nameAlert, descAlert) {
-    let name = document.getElementById('name').value;
-    let password = document.getElementById('description').value;
-    if (name === '') {
-        alert(nameAlert);
-        return false;
-    }
-    if (password === '') {
-        alert(descAlert);
-        return false;
-    }
-    return true;
-}
-
 function validateUserForm() {
-    validateForm(
-        "Пожалуйста заполните поле \"Название\"",
-        "Пожалуйста заполните поле \"Пароль\""
-    );
+    return validateFields(['username','Имя'], ['password', 'Пароль']);
 }
 
 function validatePostForm() {
-    validateForm(
-        "Пожалуйста заполните поле \"Название\"",
-        "Пожалуйста заполните поле \"Описание\""
-    );
+    return validateFields(['name','Имя'], ['description', 'Описание']);
 }
 
 function validateCommentForm() {
-    validateForm(
-        "fake",
-        "Пожалуйста заполните поле \"Текст комментария\""
-    );
+    return validateFields(['description', 'Описание']);
+}
+
+function validateFields(...args) {
+    return args.every(arg => {
+        return validateField(arg[0], arg[1]);
+    });
+}
+
+function validateField(fieldId, fieldName) {
+    let value = document.getElementById(fieldId).value;
+    if (value.trim() === '') {
+        alert("Пожалуйста заполните поле \"" + fieldName + "\"");
+        return false;
+    }
+    return true;
 }

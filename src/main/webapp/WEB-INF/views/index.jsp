@@ -32,14 +32,14 @@
                 <a class="header" style="font-size: medium">Текущий пользователь: ${curuser.username}</a>
             </c:if>
             <c:if test="${empty curuser.username}">
-                <a class="header" href="http://localhost:8080/login" style="font-size: medium">Войти</a>
+                <a class="header" href="<c:url value="/login"/>" style="font-size: medium">Войти</a>
             </c:if>
         </h3>
         <c:if test="${not empty curuser.username}">
-            <a class="header" href="http://localhost:8080/logout" style="font-size: medium">Сменить пользователя</a>
+            <a class="header" href="<c:url value="/logout"/>" style="font-size: medium">Сменить пользователя</a>
         </c:if>
         <c:if test="${empty curuser.username}">
-            <a class="header" href="http://localhost:8080/reg" style="font-size: medium">Зарегистрироваться</a>
+            <a class="header" href="<c:url value="/reg"/>" style="font-size: medium">Зарегистрироваться</a>
         </c:if>
     </div>
     <c:if test="${not empty curuser.username}">
